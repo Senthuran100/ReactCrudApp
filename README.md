@@ -1,5 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-A Simple Crud Application for learning purpose
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). <br />
+<b>A Simple Crud Application for learning purpose</b>
 
 ## Available Scripts
 
