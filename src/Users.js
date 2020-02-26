@@ -3,7 +3,7 @@ import AddUser from './AddUser';
 
 class Users extends Component {
     state = {
-        users: [{ id: 1, name: 'Senthuran', age: 25, address: 'Colombo' }, { id: 2, name: 'Senthuran', age: 25, address: 'Colombo' }, { id: 3, name: 'Senthuran', age: 25, address: 'Colombo' },{ id: 3, name: 'Senthuran4', age: 14, address: 'kandy' }]
+        users: [{ id: 1, name: 'Senthuran1', age: 25, address: 'Colombo', isEdit:false }, { id: 2, name: 'Senthuran2', age: 25, address: 'Colombo', isEdit:false }, { id: 3, name: 'Senthuran3', age: 25, address: 'Colombo', isEdit:false },{ id: 4, name: 'Senthuran4', age: 14, address: 'kandy', isEdit:false }]
     }
 
     AddUser=(newuser)=>{
@@ -13,8 +13,23 @@ class Users extends Component {
         });
     }
 
-    pressEdit=(index)=>{
+    updateUser=(i,name,age,address)=>{
+        let users=this.state.users;
+        users[i].name=name;
+        users[i].age=age;
+        users[i].address=address;
 
+        this.setState({
+            users
+        });
+    }
+
+    pressEdit=(i)=>{
+        let users=this.state.users;
+        users[i].isEdit=true;
+        this.setState({
+            users
+        });
     }
 
     pressDelete=(i)=>{
@@ -44,16 +59,17 @@ class Users extends Component {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th> Name  </th>
-                            <th> Age   </th>
-                            <th>Address</th>
+                            <th> Name   </th>
+                            <th> Age    </th>
+                            <th> Address </th>
+                            <th> Action  </th>
                         </tr>
                     </thead>
                     <tbody>
                         {userlist}
                     </tbody>
                 </table>
-                <AddUser AddUser={this.AddUser}/>
+                <AddUser AddUser={this.AddUser} edituser={this.state.users} updateUser={this.updateUser}/>
             </div>
         );
     }
