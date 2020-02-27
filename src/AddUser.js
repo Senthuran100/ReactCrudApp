@@ -9,12 +9,16 @@ class AddUser extends Component {
             name: '',
             age: 0,
             address: '',
-            isEdit: false
-        }
+            data:null
+       }
     }
 
     handleUpdate=()=>{
-        this.props.updateUser(this.id,this.state.name,this.state.age,this.state.address);
+        this.state.data=null;
+        this.setState({data:null});
+        // document.getElementById("theForm1").reset()
+        this.props.updateUser(this.id,this.name.value,this.age.value,this.address.value);
+        console.log(this.state.data);
     }
 
     handleSubmit = (e) => {
@@ -36,28 +40,26 @@ class AddUser extends Component {
     }
 
     render() {
-        console.log(this.props.edituser);
-        const data = this.findArrayElementByEdit(this.props.edituser);
-        console.log(data);
+         this.state.data = this.findArrayElementByEdit(this.props.edituser);
         
         return (
             <div>
-                {data.length > 0 ? (
-                    <form id="theForm" >
+                {this.state.data.length > 0 ? (
+                    <form id="theForm1" >
                         <div class="form-group">
                             <label >Name111</label>
-                            <input type="text"  name='name' onChange={this.handleChange} defaultValue={data[0].name}  placeholder="Enter Name" />
+                            <input type="text" class="form-control" name='name' ref={input => this.name = input} defaultValue={this.state.data[0].name}  placeholder="Enter Name" />
                         </div>
                         <div class="form-group">
                             <label >Age1333</label>
-                            <input type="number"  name="age" onChange={this.handleChange} defaultValue={data[0].age}  placeholder="Enter Age" />
+                            <input type="number"  class="form-control" name="age" ref={input => this.age = input} defaultValue={this.state.data[0].age}  placeholder="Enter Age" />
                         </div>
                         <div class="form-group">
                             <label >Address34</label>
-                            <input type="text"  name="address" onChange={this.handleChange} defaultValue={data[0].address}  placeholder="Enter Address" />
+                            <input type="text"  class="form-control" name="address" ref={input => this.address = input} defaultValue={this.state.data[0].address}  placeholder="Enter Address" />
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-primary" onClick={this.handleUpdate} ref={() => { this.id = data[0].id }}> Submit</button>
+                            <button type="button" class="btn btn-primary" onClick={this.handleUpdate} ref={() => { this.id = this.state.data[0].id }}> Submit</button>
                         </div>
                     </form>
 
@@ -82,7 +84,6 @@ class AddUser extends Component {
                     )}
             </div>
         );
-
     }
 
 }

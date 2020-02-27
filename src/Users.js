@@ -3,10 +3,13 @@ import AddUser from './AddUser';
 
 class Users extends Component {
     state = {
-        users: [{ id: 1, name: 'Senthuran1', age: 25, address: 'Colombo', isEdit:false }, { id: 2, name: 'Senthuran2', age: 25, address: 'Colombo', isEdit:false }, { id: 3, name: 'Senthuran3', age: 25, address: 'Colombo', isEdit:false },{ id: 4, name: 'Senthuran4', age: 14, address: 'kandy', isEdit:false }]
+        users: [{ id: 0, name: 'Senthuran1', age: 25, address: 'Colombo', isEdit:false }, { id: 1, name: 'Senthuran2', age: 25, address: 'Colombo', isEdit:false }, { id: 2, name: 'Senthuran3', age: 25, address: 'Colombo', isEdit:false },{ id: 3, name: 'Senthuran4', age: 14, address: 'kandy', isEdit:false }]
     }
 
     AddUser=(newuser)=>{
+        console.log(newuser);
+        newuser={...newuser,id:this.state.users.length,isEdit:false};
+        console.log(newuser);
         let users=[...this.state.users,newuser];
         this.setState({
             users
@@ -15,17 +18,20 @@ class Users extends Component {
 
     updateUser=(i,name,age,address)=>{
         let users=this.state.users;
+        users[i].id=i;
         users[i].name=name;
         users[i].age=age;
         users[i].address=address;
-
+        users[i].isEdit=false;
         this.setState({
             users
         });
+        document.getElementById("theForm1").reset();
     }
 
     pressEdit=(i)=>{
         let users=this.state.users;
+        users.isEdit=false;
         users[i].isEdit=true;
         this.setState({
             users
