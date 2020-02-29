@@ -26,12 +26,11 @@ class Users extends Component {
         this.setState({
             users
         });
-        document.getElementById("theForm1").reset();
     }
 
     pressEdit=(i)=>{
         let users=this.state.users;
-        users.isEdit=false;
+
         users[i].isEdit=true;
         this.setState({
             users

@@ -14,7 +14,6 @@ class AddUser extends Component {
     }
 
     handleUpdate=()=>{
-        this.state.data=null;
         this.setState({data:null});
         // document.getElementById("theForm1").reset()
         this.props.updateUser(this.id,this.name.value,this.age.value,this.address.value);
@@ -41,7 +40,6 @@ class AddUser extends Component {
 
     render() {
          this.state.data = this.findArrayElementByEdit(this.props.edituser);
-        
         return (
             <div>
                 {this.state.data.length > 0 ? (
@@ -59,7 +57,7 @@ class AddUser extends Component {
                             <input type="text"  class="form-control" name="address" ref={input => this.address = input} defaultValue={this.state.data[0].address}  placeholder="Enter Address" />
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-primary" onClick={this.handleUpdate} ref={() => { this.id = this.state.data[0].id }}> Submit</button>
+                            <button type="button" class="btn btn-primary" onClick={this.handleUpdate} ref={() => { if(this.state.data[0]!=null){this.id = this.state.data[0].id }}}> Submit</button>
                         </div>
                     </form>
 
